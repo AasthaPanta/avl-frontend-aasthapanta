@@ -3,15 +3,37 @@ import React from "react";
 // Importing from Material-UI
 import Grid from "@material-ui/core/Grid";
 
+// Importing Colors
+import { colors } from "../styles/ColorPalette";
+
+// Importing Components
+import ProblemCard from "./ProblemCard";
+
+const styles = {
+  mainContainer: {
+    height: "100vh",
+  },
+  gridContainer: {
+    height: "100%",
+  },
+  smallGrid: {
+    backgroundColor: colors.darkBackground,
+  },
+  bigGrid: {
+    backgroundColor: colors.mediumBackground,
+    padding: "40px",
+  },
+};
+
 const Main = () => {
   return (
-    <div style={{ height: "100vh" }}>
-      <Grid container spacing={1} style={{ height: "100%" }}>
-        <Grid item xs={4} style={{ backgroundColor: "pink" }}>
+    <div style={styles.mainContainer}>
+      <Grid container spacing={1} style={styles.gridContainer}>
+        <Grid item md={3} lg={3} xs={12} sm={12} style={styles.smallGrid}>
           <div> I am small div</div>
         </Grid>
-        <Grid item xs={8} style={{ backgroundColor: "red" }}>
-          <div>I am big div</div>
+        <Grid item md={9} lg={9} xs={12} sm={12} style={styles.bigGrid}>
+          <ProblemCard />
         </Grid>
       </Grid>
     </div>
