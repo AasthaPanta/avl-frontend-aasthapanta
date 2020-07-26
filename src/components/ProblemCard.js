@@ -180,16 +180,6 @@ const ProblemCard = () => {
         >
           Types
         </Button>
-        <Menu
-          id="type-menu"
-          keepMounted
-          onClose={handleClose}
-          open={Boolean(anchorEl)}
-        >
-          <MenuItem onClick={handleClose}>Popular</MenuItem>
-          <MenuItem onClick={handleClose}>New</MenuItem>
-          <MenuItem onClick={handleClose}>Old</MenuItem>
-        </Menu>
 
         <Button
           aria-controls="filter-menu"
@@ -200,16 +190,6 @@ const ProblemCard = () => {
         >
           More Filter
         </Button>
-        <Menu
-          id="filter-menu"
-          keepMounted
-          onClose={handleClose}
-          open={Boolean(anchorEl)}
-        >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
       </div>
       <Card style={styles.mainCard} raised>
         <CardContent style={styles.cardContent}>
