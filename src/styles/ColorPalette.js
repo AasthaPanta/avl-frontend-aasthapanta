@@ -8,4 +8,5 @@ export const colors = {
   buttonBackground: "#2ec4b6",
   borderColor: "#2ec4b6",
   headingTextColor: "#ffc857",
+  paragraphColor: "#e0e0e0",
 };
