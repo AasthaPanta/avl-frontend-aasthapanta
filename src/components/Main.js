@@ -8,6 +8,7 @@ import { colors } from "../styles/ColorPalette";
 
 // Importing Components
 import ProblemCard from "./ProblemCard";
+import StatusView from "./StatusView";
 
 const styles = {
   mainContainer: {
@@ -18,10 +19,11 @@ const styles = {
   },
   smallGrid: {
     backgroundColor: colors.darkBackground,
+    padding: "20px",
   },
   bigGrid: {
     backgroundColor: colors.mediumBackground,
-    padding: "40px",
+    padding: "20px",
   },
 };
 
@@ -30,7 +32,7 @@ const Main = () => {
     <div style={styles.mainContainer}>
       <Grid container spacing={1} style={styles.gridContainer}>
         <Grid item md={3} lg={3} xs={12} sm={12} style={styles.smallGrid}>
-          <div> I am small div</div>
+          <StatusView />
         </Grid>
         <Grid item md={9} lg={9} xs={12} sm={12} style={styles.bigGrid}>
           <ProblemCard />

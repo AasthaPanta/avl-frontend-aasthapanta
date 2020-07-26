@@ -5,21 +5,42 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+
+// Importing icons
 import Keyboard from "@material-ui/icons/Keyboard";
 import Dot from "@material-ui/icons/FiberManualRecordOutlined";
 import Functions from "@material-ui/icons/Functions";
-import TextField from "@material-ui/core/TextField";
+import DropDown from "@material-ui/icons/ArrowDropDown";
 
 // Importing from styles
 import { colors } from "../styles/ColorPalette";
 
+// Importing Components
+import ProblemChart from "./ProblemChart";
+
 const styles = {
+  selectorBox: {
+    marginBottom: "20px",
+    paddingLeft: "60px",
+    display: "flex",
+  },
+
+  filterButton: {
+    borderRadius: "20px",
+    borderColor: colors.subtleText,
+    color: colors.borderColor,
+    marginRight: "10px",
+    fontSize: "12px",
+  },
+
   mainCard: {
     backgroundColor: colors.mediumBackground,
-    height: "80%",
+    height: "85%",
     padding: "30px 60px",
   },
-  cardContent: {},
 
   headerContainer: {
     display: "flex",
@@ -55,12 +76,17 @@ const styles = {
 
   ipBoxes: {
     width: "48%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   inputBoxes: {
     width: "50px",
-    marginRight: "3px",
+    marginRight: "5px",
     marginTop: "80px",
+    border: "1px solid #2ec4b6",
+    borderRadius: "5px",
   },
 
   cardActions: {
@@ -73,15 +99,18 @@ const styles = {
     color: colors.subtleText,
     fontSize: "12px",
     padding: "8px",
+    borderRadius: "20px",
   },
 
   cardButton: {
     color: colors.subtleText,
     borderColor: colors.borderColor,
+    borderRadius: "20px",
   },
 };
 
 const ProblemCard = () => {
+  // For Handling number entry box
   const nameFirst = useRef(null);
   const nameSecond = useRef(null);
   const nameThird = useRef(null);
@@ -101,11 +130,77 @@ const ProblemCard = () => {
       } else if (event.target.name === "third") {
         nameFourth.current.focus();
       } else if (event.target.name === "fourth") {
+        nameFirst.current.focus();
       }
     }
   };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <React.Fragment>
+      <div style={styles.selectorBox}>
+        <Button
+          aria-controls="topics-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          variant="outlined"
+          style={styles.filterButton}
+          endIcon={<DropDown />}
+        >
+          Topics
+        </Button>
+        <Menu
+          id="topics-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>Arithmetic</MenuItem>
+          <MenuItem onClick={handleClose}>Algebra</MenuItem>
+          <MenuItem onClick={handleClose}>Geometry</MenuItem>
+          <MenuItem onClick={handleClose}>Trigonometry</MenuItem>
+        </Menu>
+
+        <Button
+          aria-controls="type-menu"
+          aria-haspopup="true"
+          variant="outlined"
+          style={styles.filterButton}
+          endIcon={<DropDown />}
+        >
+          Types
+        </Button>
+        <Menu id="type-menu" keepMounted onClose={handleClose}>
+          <MenuItem onClick={handleClose}>Popular</MenuItem>
+          <MenuItem onClick={handleClose}>New</MenuItem>
+          <MenuItem onClick={handleClose}>Old</MenuItem>
+        </Menu>
+
+        <Button
+          aria-controls="filter-menu"
+          aria-haspopup="true"
+          style={styles.filterButton}
+          variant="outlined"
+          endIcon={<DropDown />}
+        >
+          More Filter
+        </Button>
+        <Menu id="filter-menu" keepMounted onClose={handleClose}>
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem onClick={handleClose}>Logout</MenuItem>
+        </Menu>
+      </div>
       <Card style={styles.mainCard} raised>
         <CardContent style={styles.cardContent}>
           <div style={styles.headerContainer}>
@@ -152,7 +247,9 @@ const ProblemCard = () => {
                   uncover many web sites still in their infancy
                 </p>
               </div>
-              <div style={styles.chartbox}></div>
+              <div style={styles.chartbox}>
+                <ProblemChart />
+              </div>
             </div>
             <div style={styles.ipBoxes}>
               <TextField
@@ -163,6 +260,9 @@ const ProblemCard = () => {
                 size="small"
                 inputRef={nameFirst}
                 onKeyPress={handleEnter}
+                InputProps={{
+                  style: { color: colors.subtleText },
+                }}
                 style={styles.inputBoxes}
               />
               <TextField
@@ -173,6 +273,9 @@ const ProblemCard = () => {
                 size="small"
                 inputRef={nameSecond}
                 onKeyPress={handleEnter}
+                InputProps={{
+                  style: { color: colors.subtleText },
+                }}
                 style={styles.inputBoxes}
               />
               <TextField
@@ -183,6 +286,9 @@ const ProblemCard = () => {
                 size="small"
                 inputRef={nameThird}
                 onKeyPress={handleEnter}
+                InputProps={{
+                  style: { color: colors.subtleText },
+                }}
                 style={styles.inputBoxes}
               />
               <TextField
@@ -193,6 +299,9 @@ const ProblemCard = () => {
                 size="small"
                 inputRef={nameFourth}
                 onKeyPress={handleEnter}
+                InputProps={{
+                  style: { color: colors.subtleText },
+                }}
                 style={styles.inputBoxes}
               />
             </div>
