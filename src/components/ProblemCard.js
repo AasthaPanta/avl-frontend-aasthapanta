@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 // Importing from material-ui
 import Card from "@material-ui/core/Card";
@@ -54,8 +54,13 @@ const styles = {
   },
 
   ipBoxes: {
-    backgroundColor: "pink",
     width: "48%",
+  },
+
+  inputBoxes: {
+    width: "50px",
+    marginRight: "3px",
+    marginTop: "80px",
   },
 
   cardActions: {
@@ -77,6 +82,28 @@ const styles = {
 };
 
 const ProblemCard = () => {
+  const nameFirst = useRef(null);
+  const nameSecond = useRef(null);
+  const nameThird = useRef(null);
+  const nameFourth = useRef(null);
+
+  useEffect(() => {
+    nameFirst.current.focus();
+  }, []);
+
+  const handleEnter = (event) => {
+    console.log("Inside handleEnter");
+    if (event.charCode === 13) {
+      if (event.target.name === "first") {
+        nameSecond.current.focus();
+      } else if (event.target.name === "second") {
+        nameThird.current.focus();
+      } else if (event.target.name === "third") {
+        nameFourth.current.focus();
+      } else if (event.target.name === "fourth") {
+      }
+    }
+  };
   return (
     <React.Fragment>
       <Card style={styles.mainCard} raised>
@@ -127,7 +154,48 @@ const ProblemCard = () => {
               </div>
               <div style={styles.chartbox}></div>
             </div>
-            <div style={styles.ipBoxes}>I am input boxes</div>
+            <div style={styles.ipBoxes}>
+              <TextField
+                id="first"
+                name="first"
+                defaultValue="1"
+                variant="outlined"
+                size="small"
+                inputRef={nameFirst}
+                onKeyPress={handleEnter}
+                style={styles.inputBoxes}
+              />
+              <TextField
+                id="second"
+                name="second"
+                defaultValue="."
+                variant="outlined"
+                size="small"
+                inputRef={nameSecond}
+                onKeyPress={handleEnter}
+                style={styles.inputBoxes}
+              />
+              <TextField
+                id="third"
+                name="third"
+                defaultValue="1"
+                variant="outlined"
+                size="small"
+                inputRef={nameThird}
+                onKeyPress={handleEnter}
+                style={styles.inputBoxes}
+              />
+              <TextField
+                id="fourth"
+                name="fourth"
+                defaultValue="4"
+                variant="outlined"
+                size="small"
+                inputRef={nameFourth}
+                onKeyPress={handleEnter}
+                style={styles.inputBoxes}
+              />
+            </div>
           </div>
         </CardContent>
 
