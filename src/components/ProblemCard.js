@@ -135,14 +135,14 @@ const ProblemCard = () => {
     }
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState("");
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl("");
   };
 
   return (
@@ -180,7 +180,12 @@ const ProblemCard = () => {
         >
           Types
         </Button>
-        <Menu id="type-menu" keepMounted onClose={handleClose}>
+        <Menu
+          id="type-menu"
+          keepMounted
+          onClose={handleClose}
+          open={Boolean(anchorEl)}
+        >
           <MenuItem onClick={handleClose}>Popular</MenuItem>
           <MenuItem onClick={handleClose}>New</MenuItem>
           <MenuItem onClick={handleClose}>Old</MenuItem>
@@ -195,7 +200,12 @@ const ProblemCard = () => {
         >
           More Filter
         </Button>
-        <Menu id="filter-menu" keepMounted onClose={handleClose}>
+        <Menu
+          id="filter-menu"
+          keepMounted
+          onClose={handleClose}
+          open={Boolean(anchorEl)}
+        >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
