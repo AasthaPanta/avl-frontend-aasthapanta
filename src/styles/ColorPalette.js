@@ -7,4 +7,5 @@ export const colors = {
   subtleText: "#f8f9fa",
   buttonBackground: "#2ec4b6",
   borderColor: "#2ec4b6",
+  headingTextColor: "#ffc857",
 };
