@@ -6,47 +6,61 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 // Importing styles
 import { colors } from "../styles/ColorPalette";
 
-const styles = {
-  mainContainer: {
-    position: "relative",
-  },
-  textContainer: {
-    position: "absolute",
-    left: "80px",
-    top: "70px",
-  },
-  text: {
-    color: colors.brightText,
-    fontWeight: "700",
-    fontSize: "30px",
-    marginTop: "-10px",
-  },
-  chartContainer: {
-    height: "220px",
-    width: "220px",
-    borderRadius: "100%",
-    border: "1px solid #282c35",
-  },
-};
+import styled from "styled-components";
+
+const ChartContainer = styled.div`
+  height: 220px;
+  width: 220px;
+  border-radius: 100%;
+  border: 1px solid #282c35;
+  @media (max-width: 450px) {
+    height: 130px;
+    width: 130px;
+  }
+`;
+
+const MainContainer = styled.div`
+  position: relative;
+`;
+
+const TextContainer = styled.div`
+  position: absolute;
+  left: 80px;
+  top: 70px;
+  @media (max-width: 450px) {
+    top: 30px;
+    left: 35px;
+  }
+`;
+
+const Text = styled.p`
+  color: ${colors.brightText};
+  font-weight: 700;
+  font-size: 30px;
+  margin-top: -10px;
+  @media (max-width: 450px) {
+    font-size: 25px;
+  }
+`;
 
 const ProgressChart = () => {
   return (
-    <div style={styles.mainContainer}>
-      <div style={styles.textContainer}>
+    <MainContainer>
+      <TextContainer>
         <p style={{ color: colors.paragraphColor }}>Accuracy</p>
-        <p style={styles.text}>75%</p>
-      </div>
-      <div style={styles.chartContainer}>
+        <Text>75%</Text>
+      </TextContainer>
+      <ChartContainer>
         <CircularProgress
           variant="static"
           value={75}
           label="hello"
-          size={220}
+          size="100%"
           thickness={1}
           style={{ color: " #2ec4b6" }}
         />
-      </div>
-    </div>
+      </ChartContainer>
+    </MainContainer>
   );
 };
 

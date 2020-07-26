@@ -17,95 +17,138 @@ import DropDown from "@material-ui/icons/ArrowDropDown";
 
 // Importing from styles
 import { colors } from "../styles/ColorPalette";
+import styled from "styled-components";
 
 // Importing Components
 import ProblemChart from "./ProblemChart";
 
+const SelectorBox = styled.div`
+  margin-bottom: 20px;
+  padding-left: 60px;
+  display: flex;
+  @media (max-width: 450px) {
+    padding-left: 2px;
+    justify-content: space-between;
+  }
+`;
+
+const FilterButton = styled(Button)`
+  && {
+    border-radius: 20px;
+    border-color: ${colors.subtleText};
+    color: ${colors.borderColor};
+    margin-right: 10px;
+    font-size: 12px;
+    @media (max-width: 450px) {
+      font-size: 10px;
+      padding: 7px;
+    }
+  }
+`;
+
+const MainCard = styled(Card)`
+  && {
+    background-color: ${colors.mediumBackground};
+    height: 85%;
+    padding: 30px 60px;
+    @media (max-width: 450px) {
+      padding: 5px 2px;
+      height: 95%;
+    }
+  }
+`;
+
+const CardHeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 450px) {
+    justify-content: center;
+  }
+`;
+
+const HeaderButton = styled(Button)`
+  && {
+    color: ${({ dark }) =>
+      dark ? colors.paragraphColor : colors.headingTextColor};
+    font-size: 12px;
+    padding: 8px;
+    margin-right: 15px;
+    background-color: ${({ dark }) =>
+      dark ? colors.darkBackground : "transparent"};
+    @media (max-width: 450px) {
+      display: ${({ dark }) => (dark ? "none" : "")};
+      font-size: 10px;
+      padding: 5px;
+    }
+  }
+`;
+
+const HorizontalDivider = styled.hr`
+  border-color: #e0e0e0;
+  border-width: 0.7px;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
+`;
+
+const TextndChart = styled.div`
+  color: ${colors.paragraphColor};
+  font-size: 15px;
+  width: 50%;
+  word-spacing: 0.5em;
+  line-height: 1.6;
+  text-align: justify;
+  @media (max-width: 450px) {
+    width: 100%;
+  }
+`;
+
+const ChartBox = styled.div`
+  background-color: ${colors.darkBackground};
+  padding: 10px;
+`;
+
+const InputBoxes = styled.div`
+  width: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 450px) {
+    width: 100%;
+    justify-content: center;
+  }
+`;
+
+const TextBoxes = styled(TextField)`
+  && {
+    width: 50px;
+    margin-right: 5px;
+    margin-top: 80px;
+    border: 1px solid ${colors.lightBackground};
+    border-radius: 5px;
+    @media (max-width: 450px) {
+      margin-top: 40px;
+      width: 60px;
+    }
+  }
+`;
+
+const CardButton = styled(Button)`
+  color: ${colors.subtleText};
+  border-color: ${colors.borderColor};
+  border-radius: 20px;
+`;
+
 const styles = {
-  selectorBox: {
-    marginBottom: "20px",
-    paddingLeft: "60px",
-    display: "flex",
-  },
-
-  filterButton: {
-    borderRadius: "20px",
-    borderColor: colors.subtleText,
-    color: colors.borderColor,
-    marginRight: "10px",
-    fontSize: "12px",
-  },
-
-  mainCard: {
-    backgroundColor: colors.mediumBackground,
-    height: "85%",
-    padding: "30px 60px",
-  },
-
-  headerContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-
-  headerText: {
-    color: colors.headingTextColor,
-    fontSize: "12px",
-    padding: "8px",
-    marginRight: "15px",
-  },
-
-  divider: {
-    borderColor: "#e0e0e0",
-    borderWidth: "0.7px",
-  },
-
-  contentContainer: {
-    display: "flex",
-    marginTop: "20px",
-    justifyContent: "space-between",
-  },
-
-  textnChart: {
-    color: colors.paragraphColor,
-    fontSize: "15px",
-    width: "50%",
-    wordSpacing: "0.5em",
-    lineHeight: "1.6",
-    textAlign: "justify",
-  },
-
-  ipBoxes: {
-    width: "48%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  inputBoxes: {
-    width: "50px",
-    marginRight: "5px",
-    marginTop: "80px",
-    border: "1px solid #2ec4b6",
-    borderRadius: "5px",
-  },
-
   cardActions: {
     display: "flex",
     justifyContent: "flex-end",
-  },
-
-  headerButton: {
-    backgroundColor: colors.darkBackground,
-    color: colors.subtleText,
-    fontSize: "12px",
-    padding: "8px",
-    borderRadius: "20px",
-  },
-
-  cardButton: {
-    color: colors.subtleText,
-    borderColor: colors.borderColor,
-    borderRadius: "20px",
   },
 };
 
@@ -117,7 +160,7 @@ const ProblemCard = () => {
   const nameFourth = useRef(null);
 
   useEffect(() => {
-    nameFirst.current.focus();
+    //nameFirst.current.focus();
   }, []);
 
   const handleEnter = (event) => {
@@ -147,17 +190,16 @@ const ProblemCard = () => {
 
   return (
     <React.Fragment>
-      <div style={styles.selectorBox}>
-        <Button
+      <SelectorBox>
+        <FilterButton
           aria-controls="topics-menu"
           aria-haspopup="true"
           onClick={handleClick}
           variant="outlined"
-          style={styles.filterButton}
           endIcon={<DropDown />}
         >
           Topics
-        </Button>
+        </FilterButton>
         <Menu
           id="topics-menu"
           anchorEl={anchorEl}
@@ -171,61 +213,58 @@ const ProblemCard = () => {
           <MenuItem onClick={handleClose}>Trigonometry</MenuItem>
         </Menu>
 
-        <Button
+        <FilterButton
           aria-controls="type-menu"
           aria-haspopup="true"
           variant="outlined"
-          style={styles.filterButton}
           endIcon={<DropDown />}
         >
           Types
-        </Button>
+        </FilterButton>
 
-        <Button
+        <FilterButton
           aria-controls="filter-menu"
           aria-haspopup="true"
-          style={styles.filterButton}
           variant="outlined"
           endIcon={<DropDown />}
         >
           More Filter
-        </Button>
-      </div>
-      <Card style={styles.mainCard} raised>
+        </FilterButton>
+      </SelectorBox>
+
+      <MainCard raised>
         <CardContent style={styles.cardContent}>
-          <div style={styles.headerContainer}>
+          <CardHeaderContainer>
             <div>
-              <Button
+              <HeaderButton
                 size="small"
-                style={styles.headerText}
                 startIcon={
                   <Keyboard style={{ color: colors.headingTextColor }} />
                 }
               >
                 Arithmetic
-              </Button>
-              <Button
+              </HeaderButton>
+              <HeaderButton
                 size="small"
-                style={styles.headerText}
                 startIcon={<Dot style={{ color: colors.headingTextColor }} />}
               >
                 Real Problems
-              </Button>
+              </HeaderButton>
             </div>
             <div>
-              <Button
+              <HeaderButton
+                dark
                 size="small"
-                style={styles.headerButton}
                 startIcon={<Functions style={{ color: colors.borderColor }} />}
               >
                 Formula
-              </Button>
+              </HeaderButton>
             </div>
-          </div>
-          <hr style={styles.divider} />
-          <div style={styles.contentContainer}>
-            <div style={styles.textnChart}>
-              <div style={styles.textbox}>
+          </CardHeaderContainer>
+          <HorizontalDivider />
+          <ContentContainer>
+            <TextndChart>
+              <div>
                 <p>
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
@@ -237,12 +276,12 @@ const ProblemCard = () => {
                   uncover many web sites still in their infancy
                 </p>
               </div>
-              <div style={styles.chartbox}>
+              <ChartBox>
                 <ProblemChart />
-              </div>
-            </div>
-            <div style={styles.ipBoxes}>
-              <TextField
+              </ChartBox>
+            </TextndChart>
+            <InputBoxes>
+              <TextBoxes
                 id="first"
                 name="first"
                 defaultValue="1"
@@ -253,9 +292,8 @@ const ProblemCard = () => {
                 InputProps={{
                   style: { color: colors.subtleText },
                 }}
-                style={styles.inputBoxes}
               />
-              <TextField
+              <TextBoxes
                 id="second"
                 name="second"
                 defaultValue="."
@@ -266,9 +304,8 @@ const ProblemCard = () => {
                 InputProps={{
                   style: { color: colors.subtleText },
                 }}
-                style={styles.inputBoxes}
               />
-              <TextField
+              <TextBoxes
                 id="third"
                 name="third"
                 defaultValue="1"
@@ -279,9 +316,8 @@ const ProblemCard = () => {
                 InputProps={{
                   style: { color: colors.subtleText },
                 }}
-                style={styles.inputBoxes}
               />
-              <TextField
+              <TextBoxes
                 id="fourth"
                 name="fourth"
                 defaultValue="4"
@@ -292,21 +328,20 @@ const ProblemCard = () => {
                 InputProps={{
                   style: { color: colors.subtleText },
                 }}
-                style={styles.inputBoxes}
               />
-            </div>
-          </div>
+            </InputBoxes>
+          </ContentContainer>
         </CardContent>
 
         <CardActions style={styles.cardActions}>
-          <Button size="small" variant="outlined" style={styles.cardButton}>
+          <CardButton size="small" variant="outlined">
             Skip
-          </Button>
-          <Button size="small" variant="outlined" style={styles.cardButton}>
+          </CardButton>
+          <CardButton size="small" variant="outlined">
             Submit
-          </Button>
+          </CardButton>
         </CardActions>
-      </Card>
+      </MainCard>
     </React.Fragment>
   );
 };

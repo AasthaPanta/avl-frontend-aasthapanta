@@ -11,9 +11,7 @@ import ProblemCard from "./ProblemCard";
 import StatusView from "./StatusView";
 
 const styles = {
-  mainContainer: {
-    height: "100vh",
-  },
+  mainContainer: {},
   gridContainer: {
     height: "100%",
   },
@@ -24,6 +22,7 @@ const styles = {
   bigGrid: {
     backgroundColor: colors.mediumBackground,
     padding: "20px",
+    height: "100%",
   },
 };
 
@@ -31,10 +30,10 @@ const Main = () => {
   return (
     <div style={styles.mainContainer}>
       <Grid container spacing={1} style={styles.gridContainer}>
-        <Grid item md={3} lg={3} xs={12} sm={12} style={styles.smallGrid}>
+        <Grid item md={3} lg={3} xs={12} sm={3} style={styles.smallGrid}>
           <StatusView />
         </Grid>
-        <Grid item md={9} lg={9} xs={12} sm={12} style={styles.bigGrid}>
+        <Grid item md={9} lg={9} xs={12} sm={9} style={styles.bigGrid}>
           <ProblemCard />
         </Grid>
       </Grid>

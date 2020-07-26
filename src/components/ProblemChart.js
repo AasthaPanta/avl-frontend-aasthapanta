@@ -7,7 +7,7 @@ const ProblemChart = () => {
   const labels = [];
 
   for (let i = 0; i < 6; i++) {
-    const date = moment(startDate).add(i, "days").format("YYYY-MM-DD");
+    const date = moment(startDate).add(i, "days").format("DD-MM");
     labels.push(date.toString());
   }
 
