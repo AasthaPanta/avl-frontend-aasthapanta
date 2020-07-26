@@ -6,3 +6,12 @@ node_js:
 script:
   - yarn test
   - yarn run build
+
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  api_key:
+    secure: Od7nBiLvFIT0xq4tEYlGHOT6Jru+FGGj19shPwK1joExXr2oIL6aDTQxmPdHDo0sAW6rMKNNpEvbkP+ZoYrkWRIgNy1KtjFhABZ95vHNhRH8crpk0uUbN6GLx/4Z9HEGwb71lloWhCN316kFxF5VCHIuG95il0sirk/7j0gwfVW0njsPug7xEuBnno8J8BVoPZBa6tvDfz6fpk7gK9RDpk77h8t4yMqMLv30Y5iICGBjuZiu7qwLwSLGLzCfMIAHw2OGY85GasVmIpJ1HoT19kMMsBaamx6a1D3u+5H9GXhNuOQAvNvkmx4fd4kxFpMDuFrdz5EWgo9P4hY1hGBf9nsCzllgYD+uRlkL9jh4WnSyZZbU3XMf517U8HywRaFN7EWgg7rmuylJpHAMf7f8wVV4FPDPQBa9h5DJbcvYL6NLJB4aNtTPH+T47vXauf6KD6olP4LKyvbuPWn8Vifyg3HcktoKoJG25Zlk2G5UrWXj2DAUROCKyHbRmkNWsiIV60H52B6AmgLdns4r/EI6Yp6WbK5Y6zV9JpHixGY5kjjGYd6w4yMoE7tlW4ytEXfxgy6ozKrZk1j8L29U+hkzTu3GvYJSuEBuqdjQJwzwDj/TWjWgCJkp3zqsQL/A6Ioo3a5qzdujsBe5KKNYDFEdY7cfCGoXea8JJlTLd/sac40=
+  app: avl-aasthapanta
+  on:
+    repo: AasthaPanta/avl-frontend-aasthapanta
